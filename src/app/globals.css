@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-forest: #14532d;
+  --color-forest-dark: #0f3f22;
+  --color-charcoal: #1f2937;
+  --color-canvas: #fafaf7;
+  --color-sage: #dce8d8;
+  --color-sand: #ede5d8;
+  --color-body: #4b5563;
+  --color-ink: #17211b;
+  --color-line: #e5e7eb;
+
+  --color-amber-ink: #8a4b08;
+  --color-amber-wash: #fdf1dc;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-manrope), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-card: 0 1px 2px rgb(23 33 27 / 0.04), 0 8px 24px -12px rgb(23 33 27 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(23 33 27 / 0.05), 0 18px 36px -16px rgb(23 33 27 / 0.22);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-canvas);
+    color: var(--color-body);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+  h1, h2, h3, h4 {
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+  :focus-visible {
+    outline: 2px solid var(--color-forest);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  .on-dark :focus-visible,
+  [data-on-dark] :focus-visible { outline-color: #fff; }
+  ::selection { background: var(--color-sage); color: var(--color-ink); }
+  dialog::backdrop { background: rgb(23 33 27 / 0.6); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

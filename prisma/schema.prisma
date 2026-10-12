@@ -1,0 +1,89 @@
+// Future database integration. This schema is NOT used by the demo build.
+// To enable: npm i prisma @prisma/client, set DATABASE_URL, then follow the README
+// ("Future backend integration"). Note that Prisma 7+ also needs a prisma.config.ts.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum PropertyStatus {
+  available
+  reserved
+  rented
+}
+
+enum PriceType {
+  on_request
+  fixed
+}
+
+enum InquiryType {
+  rental
+  facility
+  site_visit
+  general
+}
+
+enum InquiryStatus {
+  new
+  contacted
+  resolved
+}
+
+model Property {
+  id                 String         @id @default(cuid())
+  slug               String         @unique
+  title              String
+  category           String
+  description        String
+  area               Int
+  areaUnit           String
+  areaIsIllustrative Boolean        @default(true)
+  location           String
+  price              Int?
+  priceType          PriceType      @default(on_request)
+  status             PropertyStatus @default(available)
+  images             Json
+  amenities          Json
+  suitableFor        String[]
+  notes              String         @default("")
+  featured           Boolean        @default(false)
+  isSample           Boolean        @default(true)
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+}
+
+model Facility {
+  id             String  @id @default(cuid())
+  slug           String  @unique
+  name           String
+  tagline        String
+  description    String
+  category       String
+  images         Json
+  services       String[]
+  operatingHours Json
+  isPublished    Boolean @default(true)
+}
+
+model Inquiry {
+  id                 String        @id @default(cuid())
+  name               String
+  phone              String
+  email              String        @default("")
+  inquiryType        InquiryType
+  propertyType       String        @default("")
+  requiredArea       String        @default("")
+  budget             String        @default("")
+  preferredVisitDate String        @default("")
+  message            String
+  referenceSlug      String        @default("")
+  referenceTitle     String        @default("")
+  status             InquiryStatus @default(new)
+  createdAt          DateTime      @default(now())
+}
