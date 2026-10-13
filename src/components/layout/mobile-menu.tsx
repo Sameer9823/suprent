@@ -1,7 +1,8 @@
 "use client";
 
+import { createPortal } from "react-dom";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { navLinks } from "@/data/site";
@@ -11,26 +12,42 @@ import { Logo } from "@/components/ui/logo";
 
 const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
+const getMounted = () => true;
+const getMountedServer = () => false;
+const noopSubscribe = () => () => {};
+
 export function MobileMenu({ pathname }: { pathname: string }) {
   const [open, setOpen] = useState(false);
+  const mounted = useSyncExternalStore(noopSubscribe, getMounted, getMountedServer);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const prevPathnameRef = useRef(pathname);
 
   const close = () => {
     setOpen(false);
     toggleRef.current?.focus();
   };
 
-  // Lock page scroll and move focus into the menu while it is open.
   useEffect(() => {
-    if (!open) return;
+    if (open && prevPathnameRef.current !== pathname) {
+      prevPathnameRef.current = pathname;
+      close();
+    }
+  }, [pathname, open]);
+
+  useEffect(() => {
+    prevPathnameRef.current = pathname;
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!mounted || !open) return;
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     panelRef.current?.querySelector<HTMLElement>(FOCUSABLE)?.focus();
     return () => {
       document.body.style.overflow = previous;
     };
-  }, [open]);
+  }, [open, mounted]);
 
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Escape") {
@@ -66,73 +83,84 @@ export function MobileMenu({ pathname }: { pathname: string }) {
         {open ? <X aria-hidden className="size-5" /> : <Menu aria-hidden className="size-5" />}
       </button>
 
-      <AnimatePresence>
-        {open && (
-          <>
-            <motion.div
-              key="scrim"
-              aria-hidden
-              className="fixed inset-0 top-0 z-40 bg-ink/40"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              onClick={close}
-            />
-            <motion.div
-              key="panel"
-              id="mobile-menu"
-              ref={panelRef}
-              role="dialog"
-              aria-modal="true"
-              aria-label="Site menu"
-              className="fixed inset-y-0 right-0 z-50 flex w-[min(86vw,360px)] flex-col bg-canvas p-5 shadow-2xl"
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className="flex items-center justify-between">
-                <Logo />
-                <button
-                  type="button"
+      {mounted &&
+        createPortal(
+          <AnimatePresence>
+            {open && (
+              <>
+                <motion.div
+                  key="backdrop"
+                  aria-hidden
+                  className="fixed inset-0 bg-black/50 z-[90]"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
                   onClick={close}
-                  aria-label="Close menu"
-                  className="grid size-10 place-items-center rounded-md border border-line bg-white text-ink"
+                />
+                <motion.div
+                  key="panel"
+                  id="mobile-menu"
+                  ref={panelRef}
+                  role="dialog"
+                  aria-modal="true"
+                  aria-label="Site menu"
+                  className="fixed top-0 right-0 z-[100] flex h-[100dvh] w-[85%] max-w-sm flex-col overflow-y-auto bg-[#f8f8f3] p-5 pb-6 shadow-2xl"
+                  initial={{ x: "100%" }}
+                  animate={{ x: 0 }}
+                  exit={{ x: "100%" }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <X aria-hidden className="size-5" />
-                </button>
-              </div>
-              <nav aria-label="Mobile" className="mt-8">
-                <ul className="flex flex-col">
-                  {navLinks.map((link) => {
-                    const active = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
-                    return (
-                      <li key={link.href} className="border-b border-line">
-                        <Link
-                          href={link.href}
-                          onClick={() => setOpen(false)}
-                          aria-current={active ? "page" : undefined}
-                          className={cn(
-                            "flex items-center justify-between py-4 text-lg font-semibold",
-                            active ? "text-forest" : "text-ink",
-                          )}
-                        >
-                          {link.label}
-                          {active && <span aria-hidden className="size-2 rounded-full bg-forest" />}
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </nav>
-              <ButtonLink href="/contact" size="lg" className="mt-8 w-full" onClick={() => setOpen(false)}>
-                Enquire Now
-              </ButtonLink>
-            </motion.div>
-          </>
+                  <div className="flex items-center justify-between">
+                    <Logo />
+                    <button
+                      type="button"
+                      onClick={close}
+                      aria-label="Close menu"
+                      className="grid size-10 place-items-center rounded-md border border-line bg-white text-ink"
+                    >
+                      <X aria-hidden className="size-5" />
+                    </button>
+                  </div>
+
+                  <nav aria-label="Mobile" className="mt-6 flex-1">
+                    <ul className="flex flex-col">
+                      {navLinks.map((link) => {
+                        const active = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+                        return (
+                          <li key={link.href} className="border-b border-line">
+                            <Link
+                              href={link.href}
+                              onClick={close}
+                              aria-current={active ? "page" : undefined}
+                              className={cn(
+                                "flex items-center justify-between py-4 text-lg font-semibold",
+                                active ? "text-forest" : "text-ink hover:text-forest",
+                              )}
+                            >
+                              {link.label}
+                              {active && <span aria-hidden className="size-2 shrink-0 rounded-full bg-forest" />}
+                            </Link>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </nav>
+
+                  <ButtonLink
+                    href="/contact"
+                    size="lg"
+                    className="mt-auto h-12 w-full rounded-md"
+                    onClick={close}
+                  >
+                    Enquire Now
+                  </ButtonLink>
+                </motion.div>
+              </>
+            )}
+          </AnimatePresence>,
+          document.body,
         )}
-      </AnimatePresence>
     </div>
   );
 }

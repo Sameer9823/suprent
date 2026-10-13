@@ -28,7 +28,7 @@ export function PropertyCategories() {
           className="mb-10"
         />
         <Reveal>
-          <ul className="grid gap-4 md:grid-cols-4 md:auto-rows-[minmax(220px,auto)]">
+          <ul className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 md:auto-rows-[minmax(220px,auto)]">
             {groups.map((g, i) => (
               <li key={g.id} className={cn("group relative overflow-hidden rounded-lg bg-charcoal", layout[g.id])}>
                 <SafeImage src={g.image.src} alt={g.image.alt} sizes={i === 0 ? "(min-width: 768px) 50vw, 100vw" : "(min-width: 768px) 25vw, 100vw"} className="transition-transform duration-300 group-hover:scale-[1.04]" />

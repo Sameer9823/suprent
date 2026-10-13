@@ -76,9 +76,9 @@ export function PropertyCard({ property: p, layout = "grid", priority }: Props) 
           </div>
         </dl>
 
-        <div className="mt-auto flex flex-wrap items-end justify-between gap-x-4 gap-y-3 pt-5">
+        <div className="mt-auto flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between pt-5">
           <p className="font-display text-lg font-bold text-ink">{formatPrice(p)}</p>
-          <div className="relative z-10 flex gap-2">
+          <div className="relative z-10 flex flex-col gap-2 sm:flex-row sm:gap-2">
             <ButtonLink href={detailHref} variant="outline" size="sm">
               View Details
               <ArrowUpRight aria-hidden className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

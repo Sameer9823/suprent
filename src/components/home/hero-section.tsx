@@ -20,7 +20,7 @@ const onSite = infrastructure.filter((i) => i.verified).slice(0, 4);
 function HeadlineLines() {
   let n = 0;
   return (
-    <h1 id="hero-title" className="text-[2.5rem] leading-[1.06] text-white sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]">
+    <h1 id="hero-title" className="text-4xl leading-[1.06] text-white sm:text-5xl lg:text-[4rem] xl:text-[4.5rem]">
       {headline.map((line) => (
         <span key={line} className="sm:block">
           {line.split(" ").map((word) => {
@@ -75,7 +75,7 @@ export function HeroSection() {
         <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/90 via-ink/65 to-ink/10" />
         <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-1/3 bg-gradient-to-t from-ink/70 to-transparent" />
 
-        <Container className="grid min-h-[640px] items-center gap-10 pb-32 pt-16 sm:pt-20 lg:min-h-[780px] lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.65fr)] lg:pb-40">
+        <Container className="grid min-h-[520px] items-center gap-10 pb-44 pt-16 sm:pt-20 lg:min-h-[780px] lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.65fr)] lg:pb-40">
           <motion.div style={{ y: textY }}>
             <motion.p
               {...rise(0.05)}
@@ -104,44 +104,44 @@ export function HeroSection() {
                 <Play aria-hidden className="size-4 fill-current" /> Watch the Property Tour
               </ButtonLink>
             </motion.div>
-          </motion.div>
+        </motion.div>
 
-          {/* Floating summary of what is already confirmed on site. */}
-          <motion.aside
-            aria-label="On-site facilities"
-            initial={{ opacity: 0, x: 28 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: EASE, delay: 1.2 }}
-            className="hidden justify-self-end lg:block"
+        {/* On-site facilities: shown below content on mobile, floating card on desktop. */}
+        <motion.aside
+          aria-label="On-site facilities"
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: EASE, delay: 1.2 }}
+          className="w-full lg:col-span-1 lg:justify-self-end"
+        >
+          <motion.div
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 6, ease: "easeInOut", repeat: Infinity, delay: 2.2 }}
+            className="w-full rounded-xl border border-white/20 bg-white/10 p-5 text-white shadow-lift backdrop-blur-md sm:w-72"
           >
-            <motion.div
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 6, ease: "easeInOut", repeat: Infinity, delay: 2.2 }}
-              className="w-72 rounded-xl border border-white/20 bg-white/10 p-5 text-white shadow-lift backdrop-blur-md"
-            >
-              <p className="font-display text-base font-bold text-white">Already on site</p>
-              <ul className="mt-4 space-y-3">
-                {onSite.map(({ id, label }, i) => (
-                  <motion.li
-                    key={id}
-                    initial={{ opacity: 0, x: 12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, ease: EASE, delay: 1.5 + i * 0.12 }}
-                    className="flex items-center gap-3 text-[0.95rem]"
-                  >
-                    <span aria-hidden className="grid size-6 shrink-0 place-items-center rounded-full bg-emerald-300/90 text-forest-dark">
-                      <Check className="size-3.5" strokeWidth={3} />
-                    </span>
-                    {label}
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
-          </motion.aside>
+            <p className="font-display text-base font-bold text-white">Already on site</p>
+            <ul className="mt-4 space-y-3">
+              {onSite.map(({ id, label }, i) => (
+                <motion.li
+                  key={id}
+                  initial={{ opacity: 0, x: 12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, ease: EASE, delay: 1.5 + i * 0.12 }}
+                  className="flex items-center gap-3 text-[0.95rem]"
+                >
+                  <span aria-hidden className="grid size-6 shrink-0 place-items-center rounded-full bg-emerald-300/90 text-forest-dark">
+                    <Check className="size-3.5" strokeWidth={3} />
+                  </span>
+                  {label}
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+        </motion.aside>
         </Container>
       </div>
 
-      <Container className="relative z-20 -mt-12 sm:-mt-14 lg:-mt-16">
+      <Container className="relative z-0 -mt-12 sm:-mt-14 lg:-mt-16">
         <motion.div {...rise(1.3)}>
           <HeroSearch />
         </motion.div>
