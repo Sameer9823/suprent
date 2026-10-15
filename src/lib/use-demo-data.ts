@@ -10,7 +10,7 @@ import { facilitiesArraySchema, inquiriesArraySchema, propertiesArraySchema } fr
 const EMPTY_INQUIRIES: Inquiry[] = [];
 
 export const propertyStore = createDemoStore("supgs.demo.properties.v1", propertiesArraySchema, seedProperties);
-export const facilityStore = createDemoStore("supgs.demo.facilities.v1", facilitiesArraySchema, seedFacilities);
+export const facilityStore = createDemoStore("supgs.demo.facilities.v2", facilitiesArraySchema, seedFacilities);
 export const inquiryStore = createDemoStore("supgs.demo.inquiries.v1", inquiriesArraySchema, EMPTY_INQUIRIES);
 
 export const useProperties = () =>

@@ -18,10 +18,10 @@ Requires Node 20.9+ (developed on Node 22).
 
 | Route | Purpose |
 | --- | --- |
-| `/` | Home: hero + working search, infrastructure, categories, featured spaces, facilities, how it works |
+| `/` | Home: hero + working search, infrastructure, location & connectivity, categories, featured spaces, facilities, how it works |
 | `/spaces` | Filterable listing (type, availability, keyword, sort, grid/list). Filters live in the URL |
 | `/spaces/[slug]` | Property detail: gallery (keyboard + full-screen), infrastructure, inquiry panel, related spaces |
-| `/facilities`, `/facilities/[slug]` | My Dream Library, Digital Washing Center, Ujjwal Fitness Center |
+| `/facilities`, `/facilities/[slug]` | Library, digital car washing center, fitness center, stationery shop, hair salon, stitching center, tuition center |
 | `/about`, `/contact`, `/privacy`, `/terms` | Content pages (privacy/terms are **placeholders**, not legal advice) |
 | `/admin` | Demo dashboard: properties CRUD, facilities, inquiries |
 | `POST /api/inquiries` | Server-side validation + optional webhook forwarding |
@@ -39,9 +39,9 @@ Optionally set `NEXT_PUBLIC_PROPERTY_VIDEO_POSTER` to a cover image URL. The hea
 
 ## Demo data and honesty rules
 
-- All listings in `src/data/properties.ts` are **fictional samples** (`isSample: true`): location "Sample Location", illustrative areas, "Price on Request". Replace the file when real inventory exists.
-- Facility services and hours in `src/data/facilities.ts` are **placeholders**; hours of `null` display "To be confirmed".
-- Infrastructure in `src/data/site.ts`: parking, restrooms and road access are shown as provided; the railway distance (~8 km) is flagged **"To be verified"**. Flip `verified` to `true` once confirmed.
+- All listings in `src/data/properties.ts` are **fictional samples** (`isSample: true`): location "Sample Location", illustrative areas, "Price on Request". The file covers retail, showrooms, offices, banks, healthcare, education, hospitality, events, warehousing and storage. Replace the file when real inventory exists.
+- Facility services and hours in `src/data/facilities.ts` are **placeholders**; hours of `null` display "To be confirmed". The first three facilities have photos; the remaining four (stationery shop, hair salon, stitching center, tuition center) have no confirmed photos yet and use a category icon cover instead of a broken image.
+- Infrastructure in `src/data/site.ts`: parking, separate boys/girls restrooms, 24-hour CCTV monitoring, road connectivity and a healthy environment are shown as provided. Location & connectivity distances on the home page are approximate and will be confirmed; the bus-stop note is flagged **"To be verified"**.
 - No phone, email, address, domain or coordinates are invented. Footer and contact page show "to be added" until you set the env vars below.
 - Listings with no price are never treated as zero. Listings without a published price show "Price on Request" and stay visible so they can be enquired about.
 - Reserved/Rented listings have the enquiry action disabled.

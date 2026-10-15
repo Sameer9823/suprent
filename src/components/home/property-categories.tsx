@@ -7,11 +7,16 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { SafeImage } from "@/components/ui/safe-image";
 import { Reveal } from "@/components/ui/reveal";
 
-// Different tile proportions keep the grid from reading as six identical cards.
+// Different tile proportions keep the grid from reading as identical cards.
+// Layout traces the 7 visible groups into a balanced 4-column grid:
+//   Row 1: shops(2x2) | office-bank | healthcare
+//   Row 2:               banking-atm(2 cols)
+//   Row 3: education | warehousing(2 cols) | hotels-events
 const layout: Record<string, string> = {
   "shops-showrooms": "md:col-span-2 md:row-span-2 min-h-[320px] md:min-h-[460px]",
   "office-bank": "min-h-[220px]",
   healthcare: "min-h-[220px]",
+  "banking-atm": "md:col-span-2 min-h-[240px]",
   "education-coaching": "min-h-[220px]",
   "warehousing-storage": "md:col-span-2 min-h-[240px]",
   "hotels-events": "min-h-[240px]",

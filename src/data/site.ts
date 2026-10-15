@@ -1,4 +1,4 @@
-import { Car, Route, TrainFront, Lightbulb, Toilet } from "lucide-react";
+import { Car, Route, ShieldCheck, Toilet, TreePine, ShoppingBasket, Bus } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 const digits = (v?: string) => (v ? v.replace(/\D/g, "") : "");
@@ -7,7 +7,7 @@ export const siteConfig = {
   name: "SUPGS",
   tagline: "Commercial spaces and everyday facilities",
   description:
-    "SUPGS brings together commercial spaces for rent and useful everyday facilities: a library, a washing center and a fitness center.",
+    "SUPGS brings together commercial spaces for rent and useful everyday facilities: a library, a digital car washing center, a fitness center, a stationery and photocopy shop, a hair salon, a stitching center and a tuition center.",
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, ""),
   /** All contact values stay empty until the business verifies them. */
   whatsappNumber: digits(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER) || null,
@@ -46,25 +46,72 @@ export interface InfraItem {
   verified: boolean;
 }
 
-/** From the current property notes. Flip `verified` once each detail is confirmed. */
+/** On-site infrastructure details for SUPGS. */
 export const infrastructure: InfraItem[] = [
   { id: "parking", label: "Parking space", detail: "On-site parking is available.", icon: Car, verified: true },
-  { id: "restrooms", label: "Restrooms", detail: "Restroom facilities are available.", icon: Toilet, verified: true },
-  { id: "road", label: "Road connectivity", detail: "Access by road.", icon: Route, verified: true },
   {
-    id: "uses",
-    label: "Flexible use",
-    detail: "Suited to many kinds of commercial use.",
-    icon: Lightbulb,
+    id: "restrooms",
+    label: "Restrooms (boys & girls)",
+    detail: "Separate restroom facilities for boys and girls are available on site.",
+    icon: Toilet,
     verified: true,
   },
   {
-    id: "rail",
-    label: "Railway access",
-    detail: "Reported as about 8 km from a railway station. Station name and distance are being confirmed.",
-    icon: TrainFront,
+    id: "cctv",
+    label: "24-hour CCTV monitoring",
+    detail: "24-hour CCTV monitoring covers the property.",
+    icon: ShieldCheck,
+    verified: true,
+  },
+  { id: "road", label: "Road connectivity", detail: "Good road connectivity and access.", icon: Route, verified: true },
+  {
+    id: "environment",
+    label: "Healthy environment",
+    detail: "A clean and healthy environment is maintained on site.",
+    icon: TreePine,
+    verified: true,
+  },
+];
+
+/** Nearby connectivity features. `verified: false` shows "To be verified". */
+export interface LocationNote {
+  id: string;
+  label: string;
+  detail: string;
+  icon: LucideIcon;
+  verified: boolean;
+}
+
+export const locationNotes: LocationNote[] = [
+  {
+    id: "market",
+    label: "Big market",
+    detail: "A big market is located near the property.",
+    icon: ShoppingBasket,
+    verified: true,
+  },
+  {
+    id: "bus-stop",
+    label: "Bus stop",
+    detail: "A bus stop is in front of the property.",
+    icon: Bus,
     verified: false,
   },
+];
+
+/** Approximate distances from the property. Shown as proportional bars on the home page. */
+export interface DistanceItem {
+  id: string;
+  label: string;
+  distance: number;
+}
+
+export const distances: DistanceItem[] = [
+  { id: "ramgarh", label: "Ramgarh", distance: 8 },
+  { id: "mohania", label: "Mohania", distance: 9 },
+  { id: "bhabua-road", label: "Bhabua Road Railway Station", distance: 9.5 },
+  { id: "sasaram", label: "Sasaram, Bihar", distance: 40 },
+  { id: "varanasi", label: "Varanasi", distance: 80 },
 ];
 
 export const footerLegal = [

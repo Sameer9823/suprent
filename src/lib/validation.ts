@@ -109,8 +109,8 @@ export const facilitySchema = z.object({
   name: z.string().trim().min(2).max(120),
   tagline: z.string().trim().max(200),
   description: z.string().trim().min(10, "Add a short description.").max(3000),
-  category: z.enum(["study", "laundry", "fitness"]),
-  images: z.array(imageAsset).min(1, "Add at least one image.").max(12),
+  category: z.enum(["study", "laundry", "fitness", "stationery", "beauty", "tailoring", "tuition"]),
+  images: z.array(imageAsset).max(12),
   services: z.array(z.string().min(1).max(160)).max(30),
   operatingHours: z
     .array(z.object({ label: z.string().min(1).max(60), hours: z.string().max(80).nullable() }))

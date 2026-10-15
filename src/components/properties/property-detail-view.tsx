@@ -93,9 +93,7 @@ export function PropertyDetailView({ slug }: { slug: string }) {
           <section aria-labelledby="infra">
             <h2 id="infra" className="text-2xl sm:text-3xl">Infrastructure</h2>
             <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-              {confirmed
-                .filter((i) => i.id !== "uses")
-                .map(({ id, label, detail, icon: Icon }) => (
+              {confirmed.map(({ id, label, detail, icon: Icon }) => (
                   <li key={id} className="flex items-start gap-3 rounded-md border border-line bg-white p-4">
                     <Icon aria-hidden className="mt-0.5 size-5 shrink-0 text-forest" />
                     <span>

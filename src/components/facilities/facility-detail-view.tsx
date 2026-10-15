@@ -6,9 +6,9 @@ import { useFacilities } from "@/lib/use-demo-data";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import { SafeImage } from "@/components/ui/safe-image";
 import { PropertyGallery } from "@/components/properties/property-gallery";
 import { InquiryForm } from "@/components/properties/inquiry-form";
+import { FacilityCover } from "./facility-cover";
 
 export function FacilityDetailView({ slug }: { slug: string }) {
   const facility: Facility | undefined = useFacilities().find((f) => f.slug === slug);
@@ -24,13 +24,12 @@ export function FacilityDetailView({ slug }: { slug: string }) {
       </Container>
     );
   }
-  const cover = facility.images[0];
 
   return (
     <>
       <section className="relative isolate overflow-hidden bg-charcoal text-white" data-on-dark>
-        <div className="absolute inset-0 -z-10">
-          {cover && <SafeImage src={cover.src} alt={cover.alt} priority sizes="100vw" />}
+        <div className="absolute inset-0 -z-10 h-full min-h-[240px]">
+          <FacilityCover facility={facility} sizes="100vw" iconSize="lg" priority />
           <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/65 to-ink/25" />
         </div>
         <Container className="py-14 sm:py-20 lg:py-28">
@@ -81,10 +80,12 @@ export function FacilityDetailView({ slug }: { slug: string }) {
             </ul>
           </section>
 
-          <section aria-labelledby="gallery">
-            <h2 id="gallery" className="mb-5 text-2xl sm:text-3xl">Gallery</h2>
-            <PropertyGallery images={facility.images} />
-          </section>
+          {facility.images.length > 1 && (
+            <section aria-labelledby="gallery">
+              <h2 id="gallery" className="mb-5 text-2xl sm:text-3xl">Gallery</h2>
+              <PropertyGallery images={facility.images} />
+            </section>
+          )}
 
           <section aria-labelledby="location">
             <h2 id="location" className="text-2xl sm:text-3xl">Location</h2>

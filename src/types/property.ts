@@ -8,6 +8,8 @@ export const PROPERTY_CATEGORIES = [
   "hotel-restaurant",
   "event-venue",
   "bank-office",
+  "bank-atm",
+  "professional-office",
   "coaching-education",
   "warehouse-logistics",
   "storage",

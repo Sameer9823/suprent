@@ -1,6 +1,6 @@
 import type { ImageAsset } from "./property";
 
-export type FacilityCategory = "study" | "laundry" | "fitness";
+export type FacilityCategory = "study" | "laundry" | "fitness" | "stationery" | "beauty" | "tailoring" | "tuition";
 
 export interface OperatingHours {
   label: string;

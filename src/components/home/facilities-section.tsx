@@ -9,11 +9,11 @@ export function FacilitiesSection() {
       <Container>
         <SectionHeading
           title="Our facilities"
-          description="Everyday places run by SUPGS. These are not rental listings."
+          description="Everyday places run by SUPGS: a library with 24-hour CCTV monitoring, a digital car washing center, a fitness center, a stationery and photocopy shop, a hair salon, a stitching center and a tuition center. These are not rental listings."
           action={<ButtonLink href="/facilities" variant="outline" arrow>All facilities</ButtonLink>}
           className="mb-10"
         />
-        <FacilitiesList variant="tall" />
+        <FacilitiesList />
       </Container>
     </section>
   );

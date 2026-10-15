@@ -12,7 +12,8 @@ import { Reveal } from "@/components/ui/reveal";
 
 export const metadata = pageMetadata({
   title: "About SUPGS",
-  description: "SUPGS brings together commercial space opportunities and useful everyday facilities in one accessible destination.",
+  description:
+    "SUPGS brings together commercial space opportunities and useful everyday facilities in one accessible destination, from offices and retail to healthcare and hospitality, plus on-site facilities like a library, fitness center and more.",
   path: "/about",
 });
 
@@ -23,7 +24,7 @@ export default function AboutPage() {
     <>
       <PageHeader
         title="Creating Space for Better Business Opportunities."
-        description="SUPGS brings together commercial space opportunities and useful everyday facilities in one accessible destination. Our goal is to make it easier for businesses, professionals, and individuals to explore suitable spaces, understand available infrastructure, and connect with our team."
+        description="SUPGS brings together commercial space opportunities and useful everyday facilities in one accessible destination. Our goal is to make it easier for businesses, professionals, and individuals to explore suitable spaces, understand available infrastructure and connectivity, and connect with our team."
         crumbs={[{ label: "About Us" }]}
       />
 
@@ -40,14 +41,14 @@ export default function AboutPage() {
               <Building2 aria-hidden strokeWidth={1.5} className="mt-1 size-7 shrink-0 text-forest" />
               <div>
                 <h3 className="text-xl">Spaces for rent</h3>
-                <p className="mt-1.5">Commercial spaces that businesses can rent, from compact shops to large warehouses. The listings on this site are sample data until real inventory is published.</p>
+                <p className="mt-1.5">Commercial spaces that businesses can rent, from compact shops to large warehouses. Property types include retail, showrooms, offices, banks, healthcare, education, hospitality, events, warehousing and storage. The listings on this site are sample data until real inventory is published.</p>
               </div>
             </div>
             <div className="flex gap-4">
               <Home aria-hidden strokeWidth={1.5} className="mt-1 size-7 shrink-0 text-forest" />
               <div>
                 <h3 className="text-xl">Our facilities</h3>
-                <p className="mt-1.5">{facilities.map((f) => f.name).join(", ")}: everyday places promoted by SUPGS for study, laundry and fitness.</p>
+                <p className="mt-1.5">{facilities.map((f) => f.name).join(", ")}: everyday places promoted by SUPGS, including 24-hour CCTV monitoring at the library. These are not rental listings.</p>
               </div>
             </div>
           </div>

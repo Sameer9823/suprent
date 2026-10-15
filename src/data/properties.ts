@@ -235,6 +235,35 @@ export const properties: Property[] = [
     suitableFor: ["Studio or workshop", "Mixed-use operation", "Pop-up or experience space"],
     amenities: sample("Flexible layout"),
   }),
+  make(14, {
+    slug: "bank-atm-kiosk",
+    title: "Bank & ATM Kiosk",
+    category: "bank-atm",
+    area: 400,
+    featured: true,
+    description:
+      "A compact, secure space suited to a bank branch, an ATM kiosk or a financial service outlet. Security and visibility details will be confirmed on a site visit.",
+    images: [
+      img("aboutBuilding", "Modern commercial building facade"),
+      img("officeInterior", "Bright professional interior"),
+    ],
+    suitableFor: ["Bank branch kiosk", "ATM gallery", "Financial services counter"],
+    amenities: sample("Security-ready layout", "Street visibility"),
+  }),
+  make(15, {
+    slug: "professional-office-suite",
+    title: "Professional Office Suite",
+    category: "professional-office",
+    area: 1000,
+    description:
+      "A clean office suite for a small team, consultant or professional practice, with separate reception and work areas. Exact layout and fit-out will be confirmed on a site visit.",
+    images: [
+      img("officeInterior", "Bright modern office interior with desks"),
+      img("officeOpen", "Open-plan workspace with natural light"),
+    ],
+    suitableFor: ["Professional practice", "Consultancy office", "Small team workspace"],
+    amenities: sample("Reception-ready", "Partitionable layout"),
+  }),
 ];
 
 export const getPropertyBySlug = (slug: string) => properties.find((p) => p.slug === slug);
