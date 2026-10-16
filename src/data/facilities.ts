@@ -36,17 +36,17 @@ export const facilities: Facility[] = [
     id: "fac-washing",
     slug: "digital-washing-center",
     name: "Digital Car Washing Center",
-    tagline: "Laundry and vehicle care that fits around your day.",
+    tagline: "Digital vehicle care that fits around your day.",
     description:
-      "The Digital Car Washing Center offers a convenient washing and laundry service, including vehicle care. Available washing options, service details and hours are being finalised and will be published here once confirmed.",
+      "The Digital Car Washing Center offers a convenient, automated car washing service. Available washing options, service details and hours are being finalised and will be published here once confirmed.",
     category: "laundry",
     images: [
-      img("laundry", "Row of washing machines in a laundry room"),
-      img("laundryMachines", "Clean laundry facility with front-loading machines"),
+      img("car", "A modern car being washed at a digital car wash facility"),
+      img("tractor", "Vehicle maintenance equipment at an automotive service center"),
     ],
     services: [
-      "Convenient washing and laundry service",
-      "Vehicle washing options to be confirmed",
+      "Automated digital car washing service",
+      "Vehicle care options to be confirmed",
       "Service details to be confirmed",
     ],
     operatingHours: [{ label: "Daily", hours: null }],
@@ -81,7 +81,9 @@ export const facilities: Facility[] = [
     description:
       "The on-site stationery and photocopy shop provides everyday supplies, printing and copying services. Product range, pricing and timings are being finalised and will be published once confirmed.",
     category: "stationery",
-    images: [],
+    images: [
+      img("stationeryShop", "Desk with office supplies and stationery items"),
+    ],
     services: [
       "Stationery supplies to be confirmed",
       "Printing and photocopy services to be confirmed",
@@ -98,7 +100,9 @@ export const facilities: Facility[] = [
     description:
       "The on-site hair salon offers grooming and styling services. Services, timings and pricing are being finalised; use the inquiry form to ask about appointments.",
     category: "beauty",
-    images: [],
+    images: [
+      img("hairSalon", "Modern hair salon interior with styling chairs and mirrors"),
+    ],
     services: [
       "Haircutting and styling to be confirmed",
       "Grooming services to be confirmed",
@@ -115,7 +119,9 @@ export const facilities: Facility[] = [
     description:
       "The on-site stitching center provides sewing, alterations and tailoring services. Service range, turnaround times and pricing are being finalised; use the inquiry form to ask about services.",
     category: "tailoring",
-    images: [],
+    images: [
+      img("sewingWorkshop", "Tailor working on a sewing machine in a bright workshop"),
+    ],
     services: [
       "Sewing and alterations to be confirmed",
       "Tailoring service range to be confirmed",
@@ -132,7 +138,10 @@ export const facilities: Facility[] = [
     description:
       "The on-site tuition service center offers learning support for school students. Subjects, teaching approach and timings are being finalised; use the inquiry form to ask for details.",
     category: "tuition",
-    images: [],
+    images: [
+      img("classroom", "Students seated at desks in a classroom setting"),
+      img("libraryStudy", "People studying at tables in a quiet study space"),
+    ],
     services: [
       "Learning support subjects to be confirmed",
       "Teaching approach to be confirmed",

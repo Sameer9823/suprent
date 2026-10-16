@@ -24,7 +24,6 @@ export default function HomePage() {
       <InfrastructureSection />
       <LocationConnectivity />
       <PropertyCategories />
-      <FeaturedSpaces />
       <PropertyVideo />
       <FacilitiesSection />
       <WhyChoose />

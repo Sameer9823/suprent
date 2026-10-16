@@ -34,7 +34,7 @@ export function Footer() {
     <footer data-on-dark className="mt-24 bg-charcoal text-white">
       <Container className="grid gap-12 py-16 sm:grid-cols-2 md:gap-14 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1.2fr] lg:py-20">
         <div className="sm:col-span-2 lg:col-span-1">
-          <Logo inverted />
+          <Logo />
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/75">
             Commercial spaces for rent and useful everyday facilities, in one accessible destination.
           </p>

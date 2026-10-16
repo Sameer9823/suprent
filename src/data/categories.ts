@@ -55,7 +55,7 @@ export const PROPERTY_GROUPS: PropertyGroup[] = [
     label: "Bank & ATM Facility",
     description: "Spaces suited to bank branches, ATM kiosks and financial service outlets.",
     categories: ["bank-atm"],
-    image: img("aboutBuilding", "Modern commercial building with a glass and concrete facade", 900),
+    image: img("bankInterior", "Modern bank interior with waiting area and teller counters", 900),
   },
   {
     id: "education-coaching",

@@ -35,7 +35,12 @@ export const photo = {
   laundry: "photo-1517677208171-0bc6725a3e60",
   laundryMachines: "photo-1582735689369-4fe89db7114c",
   gym: "photo-1534438327276-14e5300c3a48",
-  gymFloor: "photo-1571902943202-507ec2618e8f",
+  gymFloor: "photo-1571902943202-4fe89db7114c",
+  stationeryShop: "QV5VoI18Ld8",
+  hairSalon: "LGXN4OSQSa4",
+  sewingWorkshop: "9-K82X6tOfw",
+  bankInterior: "gIOTKPXef9g",
+  bankReception: "cIjUJSyoc04",
 } as const;
 
 export type PhotoKey = keyof typeof photo;

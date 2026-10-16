@@ -204,8 +204,8 @@ export const properties: Property[] = [
     description:
       "A professional ground-floor space for a branch or a corporate office, with room for a counter, a customer waiting area and back-office work.",
     images: [
-      img("officeTowers", "Office building facade"),
-      img("officeInterior", "Professional office interior"),
+      img("bankInterior", "Modern bank interior with teller counters"),
+      img("bankReception", "Bank reception desk with waiting seating"),
     ],
     suitableFor: ["Bank branch", "Financial services office", "Corporate office"],
     amenities: sample("Customer waiting area", "Back-office room"),
@@ -244,8 +244,8 @@ export const properties: Property[] = [
     description:
       "A compact, secure space suited to a bank branch, an ATM kiosk or a financial service outlet. Security and visibility details will be confirmed on a site visit.",
     images: [
-      img("aboutBuilding", "Modern commercial building facade"),
-      img("officeInterior", "Bright professional interior"),
+      img("bankInterior", "Modern bank interior with waiting area and teller counters"),
+      img("bankReception", "Modern bank reception desk with seating"),
     ],
     suitableFor: ["Bank branch kiosk", "ATM gallery", "Financial services counter"],
     amenities: sample("Security-ready layout", "Street visibility"),
