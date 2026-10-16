@@ -1,19 +1,19 @@
 import Link from "next/link";
-import { Building2 } from "lucide-react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-/** Text wordmark with a Lucide building glyph. Swap the body of this component for the official logo later. */
+/** Logo with the official SUPGS image from /public/logo.jpeg, paired with a text wordmark. */
 export function Logo({ className, inverted = false }: { className?: string; inverted?: boolean }) {
   return (
     <Link href="/" aria-label="SUPGS home" className={cn("inline-flex items-center gap-2.5", className)}>
       <span
         aria-hidden
         className={cn(
-          "grid size-9 place-items-center rounded-md",
-          inverted ? "bg-white text-forest" : "bg-forest text-white",
+          "grid size-10 place-items-center rounded-md",
+          inverted ? "bg-white" : "bg-forest",
         )}
       >
-        <Building2 className="size-5" strokeWidth={1.75} />
+        <Image src="/logo.jpeg" alt="SUPGS" width={28} height={28} className="rounded" />
       </span>
       <span
         className={cn(
